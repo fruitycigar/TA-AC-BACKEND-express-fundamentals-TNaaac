@@ -7,14 +7,33 @@ var app = express();
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));
+app.use(logger('tiny'));
+app.use(cookieParser());
 
 // routes
 app.get('/', (req, res) => {
-    res.send(`This is why I'm hot.`);
+    res.sendFile(__dirname + '/index.html');
 })
 
-app.get('/users', (req, res) => {
-    res.send(`I'm hot 'cause I'm fly, you ain't 'cause you not.`);
+app.get('/about', (req, res) => {
+    res.sendFile(__dirname + '/about.html');
+})
+
+app.get('/blog', (req, res) => {
+    res.sendFile(__dirname + '/blog.html');
+})
+
+app.get('/cases', (req, res) => {
+    res.sendFile(__dirname + '/cases.html');
+})
+
+app.get('/contact', (req, res) => {
+    res.sendFile(__dirname + '/contact.html');
+})
+
+app.get('/services', (req, res) => {
+    res.sendFile(__dirname + '/services.html');
 })
 
 // Error handlers
